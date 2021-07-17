@@ -1,0 +1,72 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="css/styles.css"/>
+	<title>Premiere Script Editor</title>
+	<script>
+var isNS = (navigator.appName == "Netscape") ? 1 : 0;
+
+if(navigator.appName == "Netscape") document.captureEvents(Event.MOUSEDOWN||Event.MOUSEUP);
+
+function mischandler(){
+return false;
+}
+
+function mousehandler(e){
+var myevent = (isNS) ? e : event;
+var eventbutton = (isNS) ? myevent.which : myevent.button;
+if((eventbutton==2)||(eventbutton==3)) return false;
+}
+document.oncontextmenu = mischandler;
+document.onmousedown = mousehandler;
+document.onmouseup = mousehandler;
+
+
+</script>
+</head>
+<body scroll="no">
+
+<div id="headerDiv">
+
+<div id="fileDiv">
+<div id="newFileButton" onclick="newFile()">New</div>
+<div id="openFileButton" onclick="openFile()">Open</div>
+<div id="saveFileButton" onclick="saveFile()">Save</div>
+</div>
+
+<div id="debugDiv">
+	<!-- <div id="settingsButton">?</div> -->
+	<img id="playButton" src="assets/play.png" onclick="playClick()" />
+	</div>
+</div>
+
+<div id="contentDiv">
+
+</div>
+
+<div id="footerDiv">
+<div id="versionText">v0.0.5</div>
+</div>
+	<script>
+
+function getOS() {
+ 		var userAgent = window.navigator.userAgent,
+ 		platform = window.navigator.platform,
+ 		macosPlatforms = ['Macintosh', 'MacIntel', 'MacPPC', 'Mac68K'],
+ 		windowsPlatforms = ['Win32', 'Win64', 'Windows', 'WinCE'],
+ 		os = null;
+
+ 		if(macosPlatforms.indexOf(platform) != -1) {
+ 			os = "MAC";
+ 		} else if(windowsPlatforms.indexOf(platform) != -1) {
+ 			os = "WIN";
+ 		}
+ 		return os;
+ 	}
+	
+	</script>	
+	<script src="js/libs/CSInterface.js"></script>
+	<script src="js/main.js"></script>
+</body>
+</html>
