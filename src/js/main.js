@@ -69,6 +69,7 @@ function openFile() {
 		// create large text box
 		var scriptFileTextArea = document.createElement("TEXTAREA");
 		scriptFileTextArea.setAttribute("class", "scriptFileTextArea");
+		scriptFileTextArea.setAttribute("spellcheck", false);
 		scriptFileTextArea.innerHTML = "// ";
 		editorContainerContent.appendChild(scriptFileTextArea);
 
@@ -85,7 +86,7 @@ function openFile() {
 }
 
 function textAreaKeyDown(e) {
-	alert(e.toString());
+	
 }
 
 function playClick() {
@@ -101,7 +102,6 @@ function newFile() {
 	csInterface.evalScript('selectFileName()', function(res) {
 		if(JSON.parse(res) != null) {
 	if(docCounter == 1) {
-		//alert();
 	csInterface.evalScript('saveJSXFile('+JSON.stringify(document.getElementsByClassName("scriptFileTab")[0].innerHTML)+', '+JSON.stringify(document.getElementsByClassName("scriptFileTextArea")[0].value)+')', function() {
 
 
@@ -109,12 +109,10 @@ function newFile() {
 	scriptFileTab.innerHTML = JSON.parse(res)+".jsx";
 
 	var scriptFileTextArea = document.getElementsByClassName("scriptFileTextArea")[0];
-	scriptFileTextArea.innerHTML = "// " + JSON.parse(res);
+	scriptFileTextArea.value = "";
 
 	});
 	} else {
-
-	
 	var editorContainer = document.createElement("DIV");
 	editorContainer.setAttribute("id", "editorContainer");
 	document.getElementById("contentDiv").appendChild(editorContainer);
@@ -136,6 +134,7 @@ function newFile() {
 	// create large text box
 	var scriptFileTextArea = document.createElement("TEXTAREA");
 	scriptFileTextArea.setAttribute("class", "scriptFileTextArea");
+	scriptFileTextArea.setAttribute("spellcheck", false);
 	scriptFileTextArea.innerHTML = "// " + JSON.parse(res);
 	editorContainerContent.appendChild(scriptFileTextArea);
 
